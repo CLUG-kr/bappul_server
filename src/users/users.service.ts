@@ -10,11 +10,15 @@ export class UserService {
         private usersRepository: Repository<User>,
       ) {}
 
-    async findUserByStudentId(userId: string): Promise<User> {
-        return await this.usersRepository.findOne({id: userId});
+    async findUser(id: string): Promise<User> {
+        return await this.usersRepository.findOne({'id':id});
     }
 
     async createNewUser(userInfo: User): Promise<void> {
         await this.usersRepository.insert(userInfo);
+    }            
+
+    async deleteUser(id: string): Promise<void> {
+        await this.usersRepository.delete({'id':id})
     }
 }
