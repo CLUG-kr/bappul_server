@@ -4,6 +4,7 @@ import { getConnection, Repository } from 'typeorm';
 import { UserService } from './users.service';
 import { User } from '../entities/user.entity'
 import { identity } from 'rxjs';
+import { fstat } from 'fs';
 
 @Controller('users')
 export class UserController {
@@ -19,7 +20,7 @@ export class UserController {
     }
 
     @Post()
-    async createNewUser(@Body() userInfo: User): Promise<string> {
+    async createNewUser(@Body() userInfo: User): Promise<Object> {
         const connection = getConnection()
         const ids: Array<User> = await connection
             .createQueryBuilder()
@@ -28,11 +29,11 @@ export class UserController {
             .getMany()
         
         if(ids.find((value) => value.id === userInfo.id)) {
-            return "아이디가 중복된다ㅋㅋ";
+            return {"answer": "아이디가 중복된다ㅋㅋ"};
         }
         else {
             await this.appService.createNewUser(userInfo)
-            return "등록됨 ㅇㅇ";
+            return {"answer": "등록됨 ㅇㅇ"};
         }
     }
 

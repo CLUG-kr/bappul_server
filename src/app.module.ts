@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/users.module';
+import { AppController } from './app.controller'
 import "reflect-metadata";
 
 @Module({
@@ -8,7 +9,7 @@ import "reflect-metadata";
     TypeOrmModule.forRoot(),
     UserModule
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
