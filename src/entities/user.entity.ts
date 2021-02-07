@@ -1,10 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export enum UserGender {
-  MAN = 'man',
-  WOMAN = 'woman'
-}
-
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -19,12 +14,15 @@ export class User {
   @Column()
   name: string;
 
+  @Column()
+  department: string;
+
   @Column({ type: "integer", width: 2})
   entranceYear: Number;
 
-  @Column({
-    type: "enum",
-    enum: UserGender
-  })
-  gender: UserGender;
+  @Column()
+  gender: string;
+
+  @Column()
+  mailAddress: string;
 }

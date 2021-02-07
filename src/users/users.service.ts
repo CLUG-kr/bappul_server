@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, getConnection } from 'typeorm';
 import { User } from '../entities/user.entity'
 
 @Injectable()
@@ -24,5 +24,22 @@ export class UserService {
 
     async deleteUser(id: string): Promise<void> {
         await this.usersRepository.delete({'id':id})
+    }
+
+    async deleteAll(): Promise<void> {
+        await this.usersRepository.delete({})
+    }
+
+    async checkSameId(id: string):Promise<string> {
+        const connection = getConnection()
+        const ids: Array<User> = await connection
+            .createQueryBuilder()
+            .select("user.id")
+            .from(User, "user")
+            .getMany()
+        if(ids.find((value) => value.id === id)) 
+            return "false"
+        else
+            return "true"
     }
 }
