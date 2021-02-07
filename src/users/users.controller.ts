@@ -14,6 +14,11 @@ export class UserController {
         private usersRepository: Repository<User>
         ) {}
 
+    @Get()
+    async findAllUsers() {
+        return await this.appService.findAllUsers();
+    }
+
     @Get('/:id')
     async findUser(@Param('id') id:string): Promise<User> {
         return await this.appService.findUser(id);
