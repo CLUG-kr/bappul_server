@@ -28,4 +28,8 @@ export class MailsService {
     async createMailAddress(mail: Mail) {
         this.usersRepository.insert(mail);
     }
+
+    async deleteAll() {
+        this.usersRepository.delete({})
+    }
 }
