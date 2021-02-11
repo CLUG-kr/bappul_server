@@ -5,6 +5,9 @@ import { AppController } from './app.controller'
 import { MailsController } from './mails/mails.controller';
 import { MailsModule } from './mails/mails.module';
 import { AuthModule } from './auth/auth.module';
+import { RestaurantController } from './restaurant/restaurant.controller';
+import { RestaurantService } from './restaurant/restaurant.service';
+import { RestaurantModule } from './restaurant/restaurant.module';
 import "reflect-metadata";
 
 @Module({
@@ -12,9 +15,10 @@ import "reflect-metadata";
     TypeOrmModule.forRoot(),
     UserModule,
     MailsModule,
-    AuthModule
+    AuthModule,
+    RestaurantModule
   ],
-  controllers: [AppController, MailsController],
-  providers: [],
+  controllers: [AppController, MailsController, RestaurantController],
+  providers: [RestaurantService],
 })
 export class AppModule {}

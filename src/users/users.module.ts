@@ -5,7 +5,6 @@ import { Mail } from '../entities/mail.entity'
 import { UserController } from './users.controller';
 import { UserService } from './users.service'
 import { MailsService } from '../mails/mails.service'
-import { from } from 'rxjs';
 
 @Module({
     imports: [TypeOrmModule.forFeature([User, Mail])],
