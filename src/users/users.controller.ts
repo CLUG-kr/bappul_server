@@ -5,8 +5,6 @@ import { UserService } from './users.service';
 import { MailsService } from '../mails/mails.service'
 import { User } from '../entities/user.entity'
 import { Mail } from '../entities/mail.entity'
-import { from, identity } from 'rxjs';
-import { fstat } from 'fs';
 
 @Controller('users')
 export class UserController {
