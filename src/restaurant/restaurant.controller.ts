@@ -30,10 +30,22 @@ export class RestaurantController {
         
     }
 
+    /* body 형식
+        {
+            "location": {
+                "lat": "10",
+                "long": "20"
+            },
+            "review": {
+                "commentContent": "그냥그럼ㅇㅇ",
+                "rating": "3"
+            }    
+        }
+    */
     @UseGuards(JwtAuthGuard)
     @Post('/:name/review')
     async postNewReview(@Param('name') restaurantName, @Request() req, @Body() content) {
-        let restaurant = await this.resRepository.findOne({
+        let restaurant:restaurant = await this.resRepository.findOne({
             'lat': content.location.lat,
             'long': content.location.long,
             'name': restaurantName
@@ -47,6 +59,6 @@ export class RestaurantController {
                 'name': restaurantName
             })
         }
-        this.appService.postNewReview(content.review, req, restaurant.restaurantId);
+        this.appService.postNewReview(req, content.review, restaurant.restaurantId);
     }
 }

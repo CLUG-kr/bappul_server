@@ -8,28 +8,33 @@ import { Repository } from 'typeorm';
 export class RestaurantService {
     constructor(
         @InjectRepository(restaurant_comment)
-        private commentRepository: Repository<restaurant_comment>
+        private commentRepository: Repository<restaurant_comment>,
+
+        @InjectRepository(restaurant)
+        private resRepository: Repository<restaurant>
         ) {}
 
     async findMostRecentReview(restaurantId) {
         return await this.commentRepository.findOne({restaurantId: restaurantId})
     }
 
-    async postNewReview(req, post:restaurant_comment, restaurantId) {
-        let comment:restaurant_comment;
-        comment.userCode = req.userId;
-        comment.restaurantId = restaurantId;
-        comment.commentContent = post.commentContent;
-        comment.rating = post.rating;
+    async postNewReview(req, post:restaurant_comment, restaurantId:string) {
+        const comment = {
+            userCode : req.user.userId,
+            restaurantId : restaurantId,
+            commentContent : post.commentContent,
+            rating : post.rating
+        }
+
+        this.commentRepository.insert(comment);
     }
 
     async makeNewRestaurant(location, name) {
-        let restaurant:restaurant;
-
-        restaurant.lat = location.lat;
-        restaurant.long = location.long;
-        restaurant.name = name;
-
-        this.commentRepository.insert(restaurant);
+        const restaurant = {
+            'lat' : location.lat,
+            'long' : location.long,
+            'name' : name,
+        };
+        this.resRepository.insert(restaurant);
     }
 }
