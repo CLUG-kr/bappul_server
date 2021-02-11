@@ -1,10 +1,10 @@
 {
   "type": "mysql",
-  "host": "localhost",
-  "port": 3307,
+  "host": "bappultest.ctr0epq2tpel.ap-northeast-2.rds.amazonaws.com",
+  "port": 3306,
   "username": "testuser",
   "database": "bappul",
-  "password": "TEST1234!",
+  "password": "eunsongjae",
   "entities": ["{src,dist}/entities/*.entity.js"],
   "migrationsTableName": "migration_table",
   "migrations": ["dist/migration/**/*-migration.js"],
