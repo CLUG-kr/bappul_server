@@ -18,7 +18,7 @@ import "reflect-metadata";
     AuthModule,
     RestaurantModule
   ],
-  controllers: [AppController, MailsController, RestaurantController],
-  providers: [RestaurantService],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}
