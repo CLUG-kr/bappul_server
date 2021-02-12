@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
 export enum mode {
   INVITING = "inviting",
@@ -7,6 +7,9 @@ export enum mode {
 
 @Entity()
 export class Bapyak {
+  @CreateDateColumn()
+  createdDate: string;
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

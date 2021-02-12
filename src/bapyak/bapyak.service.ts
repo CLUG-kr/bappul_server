@@ -13,7 +13,8 @@ export class BapyakService {
     async postNewBapyak(req, posting) {
         const content = {
             userCode: req.user.userId,
-            content: posting.content
+            content: posting.content,
+            position: posting.position  
         }
         this.bapYakRepository.insert(content);
     }
