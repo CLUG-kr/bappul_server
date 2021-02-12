@@ -15,7 +15,12 @@ export class RestaurantService {
         ) {}
 
     async findMostRecentReview(restaurantId) {
-        return await this.commentRepository.findOne({restaurantId: restaurantId})
+        return await this.commentRepository.findOne({
+            where: {restaurantId: restaurantId},
+            order: {
+                createdDate: 'ASC'
+            }            
+        });
     }
 
     async postNewReview(req, post:restaurant_comment, restaurantId:string) {
