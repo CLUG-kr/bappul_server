@@ -50,7 +50,7 @@ export class RestaurantController {
             'long': content.location.long,
             'name': restaurantName
         })
-
+        
         if(!restaurant) {
             this.appService.makeNewRestaurant(content.location, restaurantName)
             restaurant = await this.resRepository.findOne({
