@@ -18,4 +18,16 @@ export class BapyakService {
         }
         this.bapYakRepository.insert(content);
     }
+
+    async findPosts() {
+        return this.bapYakRepository.find({
+            order: {
+                'createdDate': 'ASC'
+            }
+        })
+    }
+
+    async deleteAll() {
+        this.bapYakRepository.delete({})
+    }
 }
