@@ -22,7 +22,7 @@ import "reflect-metadata";
     RestaurantModule,
     BapyakModule
   ],
-  controllers: [AppController, BapyakController],
-  providers: [BapyakService],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}

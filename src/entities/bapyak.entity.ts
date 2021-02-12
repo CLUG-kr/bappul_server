@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class bapyak {
+export class Bapyak {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
