@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request, Body } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Body, Get } from '@nestjs/common';
 import { BapyakService } from './bapyak.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Bapyak } from '../entities/bapyak.entity'
