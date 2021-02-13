@@ -5,17 +5,22 @@ import { restaurant_comment } from '../entities/restaurant_comment.entity'
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { User } from '../entities/user.entity'
 
 @Controller('restaurant')
 export class RestaurantController {
     constructor(
         private readonly appService: RestaurantService,
+
         @InjectRepository(restaurant)
-        private resRepository: Repository<restaurant>
+        private resRepository: Repository<restaurant>,
+
+        @InjectRepository(User)
+        private userRepository: Repository<User>
         ) {}
     
       
-    @Get('/:name/reviews/review')
+    @Post('/:name/reviews/review')
     async findMostRecentReview(@Param('name') restaurantName, @Body() location) {
         const restaurant = await this.resRepository.findOne({
             'lat': location.lat,
@@ -24,17 +29,19 @@ export class RestaurantController {
         })
 
         if(restaurant) {
-            return this.appService.findMostRecentReview(restaurant.restaurantId);
+            const review = await this.appService.findMostRecentReview(restaurant.restaurantId);
+            const userCode = review.userCode;
+            const USerInfo = this.userRepository.findOne({userClassification: userCode});
         }
-        return null
-        
+        return null        
     }
 
     /* body 형식
+    차돌이식당
         {
             "location": {
-                "lat": "10",
-                "long": "20"
+                "lat": "37.5061724",
+                "long": "126.9569251"
             },
             "review": {
                 "commentContent": "그냥그럼ㅇㅇ",
