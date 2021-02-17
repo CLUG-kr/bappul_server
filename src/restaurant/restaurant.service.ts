@@ -66,7 +66,7 @@ export class RestaurantService {
         
         for(const element of reviews) {
             const userCode = element.userCode;
-            const userInfo:User = await this.userService.findUser(userCode)        
+            const userInfo:User = await this.userService.findUserByCode(userCode)        
 
             const reviewForm = new ReviewForm();
             reviewForm.name = userInfo.name;
