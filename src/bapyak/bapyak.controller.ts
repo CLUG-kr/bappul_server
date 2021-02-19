@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request, Body, Get, Query, Param } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Body, Get, Query, Param, Delete } from '@nestjs/common';
 import { BapyakService } from './bapyak.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { SerchOption } from '../entities/serchOption'
@@ -20,6 +20,16 @@ export class BapyakController {
     @Get("/:mode/:requestCount")
     async showBapyaks(@Request() req, @Param("mode") mode, @Param("requestCount") requestCount, @Query('gender') gender, @Query('major') major) {
         const serchOption = new SerchOption(gender, mode, major)
-        return await this.appService.showBapyaks(requestCount, serchOption)
+        const bapyak = await this.appService.showBapyaks(requestCount, serchOption)
+        const bapyakList = {
+            bapyaks : bapyak,
+            length : bapyak.length
+        }
+        return bapyakList
+    }
+
+    @Delete()
+    async deleteAll() {
+        this.appService.deleteAll()
     }
 }

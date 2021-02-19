@@ -30,11 +30,10 @@ export class BapyakService {
     }
 
     async showBapyaks(requestCount, serchOption:SerchOption) {
-
         if(serchOption.gender != "none") {
             if(serchOption.mode != "none") {
                 if(serchOption.major != "none") {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -48,7 +47,7 @@ export class BapyakService {
                     })
                 }
                 else {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -64,7 +63,7 @@ export class BapyakService {
 
             else {
                 if(serchOption.major != "none") {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -78,7 +77,7 @@ export class BapyakService {
                 }
                 else {
                     console.log("hi")
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -95,7 +94,7 @@ export class BapyakService {
         else {
             if(serchOption.mode != "none") {
                 if(serchOption.major != "none") {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -108,7 +107,7 @@ export class BapyakService {
                     })
                 }
                 else {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -123,7 +122,7 @@ export class BapyakService {
 
             else {
                 if(serchOption.major != "none") {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -135,7 +134,7 @@ export class BapyakService {
                     })
                 }
                 else {
-                    return await this.bapYakRepository.findAndCount({
+                    return await this.bapYakRepository.find({
                         order: {
                             createdDate: 'DESC'
                             },
@@ -144,7 +143,7 @@ export class BapyakService {
                     })
                 }
             }
-        }        
+        }   
     }
 
     async deleteAll() {
