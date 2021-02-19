@@ -16,6 +16,9 @@ export class Bapyak {
   @Column()
   userCode: string;
 
+  @Column()
+  title: string
+
   @Column({type: 'longtext'})
   content: string;
 
@@ -23,5 +26,5 @@ export class Bapyak {
     type: "enum",
     enum: mode,
   })
-  position: mode
+  bapyakMode: mode
 }

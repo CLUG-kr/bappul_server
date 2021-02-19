@@ -2,29 +2,34 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Bapyak } from '../entities/bapyak.entity'
+import { SerchOption } from '../entities/serchOption'
+import { UserService } from '../users/users.service'
 
 @Injectable()
 export class BapyakService {
     constructor(
         @InjectRepository(Bapyak)
-        private bapYakRepository: Repository<Bapyak>
+        private bapYakRepository: Repository<Bapyak>,
+
+        private readonly userService: UserService,
     ){}
 
     async postNewBapyak(req, posting) {
-        const content = {
+        const newBapyak = {
             userCode: req.user.userId,
+            title: posting.title,
             content: posting.content,
-            position: posting.position  
+            bapyakMode: posting.bapyakMode,
         }
-        this.bapYakRepository.insert(content);
+        this.bapYakRepository.insert(newBapyak);
     }
 
-    async findPosts() {
-        return this.bapYakRepository.find({
-            order: {
-                'createdDate': 'ASC'
+    async showBapyaks(req, serchOption:SerchOption) {
+        if(serchOption.gender != "none") {
+            if(serchOption.grade != "none") {
+                
             }
-        })
+        }
     }
 
     async deleteAll() {

@@ -14,7 +14,11 @@ export class UserService {
         return await this.usersRepository.find();
     }
 
-    async findUser(id: string): Promise<User> {
+    async findUserByCode(userCode: string): Promise<User> {
+        return await this.usersRepository.findOne({'userClassification':userCode});
+    }
+
+    async findUserById(id: string): Promise<User> {
         return await this.usersRepository.findOne({'id':id});
     }
 
