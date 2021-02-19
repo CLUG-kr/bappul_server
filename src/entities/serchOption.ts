@@ -1,11 +1,11 @@
 export class SerchOption {
     gender:string
-    grade:string
+    mode:string
     major:string
 
-    constructor(gender:string, grade:string, major:string) {
+    constructor(gender:string, mode:string, major:string) {
         this.gender = gender
-        this.grade = grade
+        this.mode = mode
         this.major = major
     }
 }

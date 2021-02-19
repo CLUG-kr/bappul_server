@@ -17,6 +17,18 @@ export class Bapyak {
   userCode: string;
 
   @Column()
+  userName: string;
+
+  @Column()
+  userEntranceYear: string;
+
+  @Column()
+  userGender: string;
+
+  @Column()
+  major: string;
+
+  @Column()
   title: string
 
   @Column({type: 'longtext'})
