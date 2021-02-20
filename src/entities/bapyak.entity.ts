@@ -34,6 +34,9 @@ export class Bapyak {
   @Column({type: 'longtext'})
   content: string;
 
+  @Column()
+  comentNum: Number;
+
   @Column({
     type: "enum",
     enum: mode,
