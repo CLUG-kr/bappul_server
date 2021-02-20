@@ -16,6 +16,18 @@ export class BapyakController {
         return {"result": "success"}
     }
 
+    
+    @Get('/:mode/search/:keyword/:requestCount')
+    async serchBapyaks(@Param("mode") mode, @Param("keyword") keyword, @Param("requestCount") requestCount, @Query('gender') gender, @Query('major') major) {
+        const serchOption = new SerchOption(gender, mode, major);
+        const bapyak = await this.appService.serchBapyaks(requestCount, serchOption, keyword);
+        const bapyakList = {
+            bapyaks : bapyak,
+            length : bapyak.length
+        }
+        return bapyakList
+    }
+
     @UseGuards(JwtAuthGuard)
     @Get("/:mode/:requestCount")
     async showBapyaks(@Request() req, @Param("mode") mode, @Param("requestCount") requestCount, @Query('gender') gender, @Query('major') major) {
@@ -25,8 +37,10 @@ export class BapyakController {
             bapyaks : bapyak,
             length : bapyak.length
         }
+        console.log(bapyakList)
         return bapyakList
     }
+
 
     @Delete()
     async deleteAll() {

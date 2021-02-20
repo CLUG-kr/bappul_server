@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, getConnection } from 'typeorm';
 import { Bapyak } from '../entities/bapyak.entity'
 import { SerchOption } from '../entities/serchOption'
 import { UserService } from '../users/users.service'
@@ -144,6 +144,204 @@ export class BapyakService {
                 }
             }
         }   
+    }
+
+    async serchBapyaks(requestCount:number, serchOption:SerchOption, keyword:string) {
+        const connection = getConnection()
+        const bapyakTitles: Array<Bapyak> = await connection
+            .createQueryBuilder()
+            .select("bapyak.title")
+            .from(Bapyak, "bapyak")
+            .getMany()
+                
+        let serchedBapyakTitles = []        
+        bapyakTitles.forEach((title) => {
+            if(title.title.indexOf(keyword)!==-1 && serchedBapyakTitles.indexOf(title.title)===-1) {
+                serchedBapyakTitles.push(title.title)
+            }
+        })
+
+        let serchedBapyaks = []
+        
+        if(serchOption.gender != "none") {
+            if(serchOption.mode != "none") {
+                if(serchOption.major != "none") {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "userGender": serchOption.gender,
+                                "bapyakMode": serchOption.mode,
+                                "major": serchOption.major
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+                else {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "userGender": serchOption.gender,
+                                "bapyakMode": serchOption.mode,
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+            }
+
+            else {
+                if(serchOption.major != "none") {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "userGender": serchOption.gender,
+                                "major": serchOption.major
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+                else {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "userGender": serchOption.gender,
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+            }
+        }
+
+        else {
+            if(serchOption.mode != "none") {
+                if(serchOption.major != "none") {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "bapyakMode": serchOption.mode,
+                                "major": serchOption.major
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+                else {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "bapyakMode": serchOption.mode,
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+            }
+
+            else {
+                if(serchOption.major != "none") {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                                "major": serchOption.major
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+                else {
+                    for(const title of serchedBapyakTitles) {
+                        let arrayHavingTitle = await this.bapYakRepository.find({
+                            order: {
+                                createdDate: 'DESC'
+                                },
+                            skip: (requestCount-1)*20,
+                            take: 20,
+                            where: {
+                                "title": title,
+                            }
+                        });
+
+                        for (const element of arrayHavingTitle) {
+                            serchedBapyaks.push(element);
+                        }
+                    }
+                    return serchedBapyaks
+                }
+            }  
+        }
     }
 
     async deleteAll() {
