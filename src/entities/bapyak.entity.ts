@@ -35,7 +35,7 @@ export class Bapyak {
   content: string;
 
   @Column()
-  comentNum: Number;
+  comentNum: number;
 
   @Column({
     type: "enum",

@@ -11,6 +11,7 @@ import { RestaurantModule } from './restaurant/restaurant.module';
 import { BapyakController } from './bapyak/bapyak.controller';
 import { BapyakService } from './bapyak/bapyak.service';
 import { BapyakModule } from './bapyak/bapyak.module';
+import { BapyakCommentModule } from './bapyak_comment/bapyak_comment.module'
 import "reflect-metadata";
 
 @Module({
@@ -20,7 +21,8 @@ import "reflect-metadata";
     MailsModule,
     AuthModule,
     RestaurantModule,
-    BapyakModule
+    BapyakModule,
+    BapyakCommentModule
   ],
   controllers: [AppController],
   providers: [],

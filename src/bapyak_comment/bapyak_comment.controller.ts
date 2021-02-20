@@ -1,4 +1,21 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Body, Param, Delete } from '@nestjs/common';
+import { BapyakCommentService } from './bapyak_comment.service'
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { BapyakComment } from '../entities/bapyak_comment.entity'
+import { identity } from 'rxjs';
 
-@Controller('bapyak-comment')
-export class BapyakCommentController {}
+@Controller('bapyakcomment')
+export class BapyakCommentController {
+    constructor(
+        private readonly appService: BapyakCommentService,
+    ){}
+
+    @UseGuards(JwtAuthGuard)
+    @Post('/:id')
+    async postNewComment(@Request() req, @Param('id') ownerId, @Body() comment:BapyakComment) {
+        comment.ownerPostId = ownerId
+        comment.userCode = req.user.userId
+        await this.appService.postNewComment(comment)
+        return {"result": "success"}
+    }
+}
