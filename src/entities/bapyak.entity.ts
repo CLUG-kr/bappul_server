@@ -34,7 +34,7 @@ export class Bapyak {
   @Column({type: 'longtext'})
   content: string;
 
-  @Column()
+  @Column({default: 0})
   comentNum: number;
 
   @Column({

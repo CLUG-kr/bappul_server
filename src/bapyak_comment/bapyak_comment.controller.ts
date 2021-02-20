@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Body, Param, Delete, Get } from '@nestjs/common';
 import { BapyakCommentService } from './bapyak_comment.service'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { BapyakComment } from '../entities/bapyak_comment.entity'
@@ -17,5 +17,15 @@ export class BapyakCommentController {
         comment.userCode = req.user.userId
         await this.appService.postNewComment(comment)
         return {"result": "success"}
+    }
+
+    @Get('/:id')
+    async getComments(@Param('id') id:string) {
+        return this.appService.getComments(id)
+    }
+
+    @Delete()
+    async deleteAll() {
+        await this.deleteAll()
     }
 }

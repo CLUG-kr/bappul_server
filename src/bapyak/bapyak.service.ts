@@ -28,6 +28,19 @@ export class BapyakService {
         }
         this.bapYakRepository.insert(newBapyak);
     }
+    
+    async showOneBapyak(bapyakId:string) {
+        return await this.bapYakRepository.findOne({id:bapyakId})
+    }
+
+    async recentBapyakforHome() {
+        return await this.bapYakRepository.find({
+            order: {
+                createdDate: 'DESC'
+                },
+            take: 5,
+        })
+    }
 
     async showBapyaks(requestCount, serchOption:SerchOption) {
         if(serchOption.gender != "none") {

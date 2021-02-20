@@ -15,8 +15,17 @@ export class BapyakController {
         this.appService.postNewBapyak(req, posting)
         return {"result": "success"}
     }
-
     
+    @Get('/:id')
+    async showOneBapyak(@Param('id') id) {
+        return this.appService.showOneBapyak(id)
+    }
+    
+    @Get('/home')
+    async recentBapyakforHome() {
+        return await  this.appService.recentBapyakforHome()
+    }
+
     @Get('/:mode/search/:keyword/:requestCount')
     async serchBapyaks(@Param("mode") mode, @Param("keyword") keyword, @Param("requestCount") requestCount, @Query('gender') gender, @Query('major') major) {
         const serchOption = new SerchOption(gender, mode, major);
