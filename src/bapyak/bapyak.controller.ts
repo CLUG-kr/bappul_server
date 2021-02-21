@@ -31,8 +31,8 @@ export class BapyakController {
         const serchOption = new SerchOption(gender, mode, major);
         const bapyak = await this.appService.serchBapyaks(requestCount, serchOption, keyword);
         const bapyakList = {
-            bapyaks : bapyak,
-            length : bapyak.length
+            "bapyaks" : bapyak,
+            "length" : bapyak.length
         }
         return bapyakList
     }

@@ -2,30 +2,30 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  userClassification: string;
+    @PrimaryGeneratedColumn('uuid')
+    userClassification: string;
 
-  @Column()
-  id: string;
+    @Column()
+    id: string;
 
-  @Column()
-  password: string;
+    @Column()
+    password: string;
 
-  @Column()
-  name: string;
+    @Column()
+    name: string;
 
-  @Column()
-  department: string;
+    @Column()
+    department: string;
 
-  @Column()
-  entranceYear: string;
+    @Column({ type: "integer", width: 2})
+    entranceYear: string;
 
-  @Column()
-  gender: string;
+    @Column()
+    gender: string;
 
-  @Column()
-  mailAddress: string;
+    @Column()
+    mailAddress: string;
 
-  @Column({default: false})
-  isAdmin: boolean;
+    @Column({default: false})
+    isAdmin: boolean;
 }

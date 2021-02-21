@@ -12,6 +12,9 @@ import { BapyakController } from './bapyak/bapyak.controller';
 import { BapyakService } from './bapyak/bapyak.service';
 import { BapyakModule } from './bapyak/bapyak.module';
 import { BapyakCommentModule } from './bapyak_comment/bapyak_comment.module'
+import { MypageController } from './mypage/mypage.controller';
+import { MypageService } from './mypage/mypage.service';
+import { MypageModule } from './mypage/mypage.module';
 import "reflect-metadata";
 
 @Module({
@@ -22,7 +25,8 @@ import "reflect-metadata";
     AuthModule,
     RestaurantModule,
     BapyakModule,
-    BapyakCommentModule
+    BapyakCommentModule,
+    MypageModule
   ],
   controllers: [AppController],
   providers: [],
