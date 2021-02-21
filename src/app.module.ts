@@ -8,6 +8,13 @@ import { AuthModule } from './auth/auth.module';
 import { RestaurantController } from './restaurant/restaurant.controller';
 import { RestaurantService } from './restaurant/restaurant.service';
 import { RestaurantModule } from './restaurant/restaurant.module';
+import { BapyakController } from './bapyak/bapyak.controller';
+import { BapyakService } from './bapyak/bapyak.service';
+import { BapyakModule } from './bapyak/bapyak.module';
+import { BapyakCommentModule } from './bapyak_comment/bapyak_comment.module'
+import { MypageController } from './mypage/mypage.controller';
+import { MypageService } from './mypage/mypage.service';
+import { MypageModule } from './mypage/mypage.module';
 import "reflect-metadata";
 
 @Module({
@@ -16,9 +23,12 @@ import "reflect-metadata";
     UserModule,
     MailsModule,
     AuthModule,
-    RestaurantModule
+    RestaurantModule,
+    BapyakModule,
+    BapyakCommentModule,
+    MypageModule
   ],
-  controllers: [AppController, MailsController, RestaurantController],
-  providers: [RestaurantService],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}
