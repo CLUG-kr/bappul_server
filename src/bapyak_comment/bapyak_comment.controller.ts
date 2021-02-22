@@ -16,12 +16,11 @@ export class BapyakCommentController {
         comment.ownerPostId = ownerId
         comment.userCode = req.user.userId
         await this.appService.postNewComment(comment)
-        return {"result": "success"}
     }
 
     @Get('/:id')
     async getComments(@Param('id') id:string) {
-        return this.appService.getComments(id)
+        return await this.appService.getComments(id)
     }
 
     @Delete()

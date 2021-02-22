@@ -27,6 +27,7 @@ export class BapyakService {
             bapyakMode: posting.bapyakMode,
         }
         this.bapYakRepository.insert(newBapyak);
+        
     }
     
     async showOneBapyak(bapyakId:string) {

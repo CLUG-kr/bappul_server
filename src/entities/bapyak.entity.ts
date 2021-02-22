@@ -1,3 +1,4 @@
+import { utimesSync } from 'fs';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
 export enum mode {
@@ -20,7 +21,7 @@ export class Bapyak {
   userName: string;
 
   @Column()
-  userEntranceYear: string;
+  userEntranceYear: number;
 
   @Column()
   userGender: string;

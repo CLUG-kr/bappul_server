@@ -24,7 +24,14 @@ export class BapyakCommentService {
     }
 
     async getComments(bapyakId:string) {
-        const commentInfo = await this.bapYakCommentRepository.find({"ownerPostId": bapyakId})
+        const commentInfo = await this.bapYakCommentRepository.find({
+            order: {
+                createdDate: 'ASC'
+            },
+            where: {
+                "ownerPostId": bapyakId
+            }
+        })
         let comments = []
         for(const element of commentInfo) {
             const user = await this.userService.findUserByCode(element.userCode)

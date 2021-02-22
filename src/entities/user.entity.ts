@@ -17,8 +17,8 @@ export class User {
     @Column()
     department: string;
 
-    @Column({ type: "integer", width: 2})
-    entranceYear: string;
+    @Column()
+    entranceYear: number;
 
     @Column()
     gender: string;
