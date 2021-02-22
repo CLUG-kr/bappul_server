@@ -1,4 +1,6 @@
+import { timeStamp } from 'console';
 import { utimesSync } from 'fs';
+import { type } from 'os';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
 export enum mode {
@@ -8,7 +10,7 @@ export enum mode {
 
 @Entity()
 export class Bapyak {
-  @CreateDateColumn()
+  @CreateDateColumn({type: "timestamp"})
   createdDate: string;
 
   @PrimaryGeneratedColumn('uuid')

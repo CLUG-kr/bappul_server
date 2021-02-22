@@ -43,6 +43,7 @@ export class BapyakCommentService {
             }
             comments.push(commentForm)
         }
+        console.log(comments)
         return comments
     }
 }
